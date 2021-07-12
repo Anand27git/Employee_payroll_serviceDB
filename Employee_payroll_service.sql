@@ -193,6 +193,7 @@ mysql> SELECT gender, count(gender) FROM employee_payroll GROUP BY gender;
 2 rows in set (0.04 sec)
 
 /* UC-8-employee information like phone_number address department */
+
 mysql>  ALTER TABLE employee_payroll ADD phone_number VARCHAR(10);
 Query OK, 0 rows affected (2.72 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -219,6 +220,42 @@ mysql> desc employee_payroll;
 | phone_number | varchar(10)  | YES  |     | NULL    |                |
 +--------------+--------------+------+-----+---------+----------------+
 8 rows in set (0.05 sec)
+
+/* UC-9- adding basic_pay, deductions,taxable_pay,tax,net_pay for employee_payroll */
+
+mysql> ALTER TABLE employee_payroll RENAME COLUMN salary TO basic_pay;
+Query OK, 0 rows affected (0.19 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  ALTER TABLE employee_payroll ADD deductions Double NOT NULL AFTER basic_pay;
+Query OK, 0 rows affected (2.43 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  ALTER TABLE employee_payroll ADD taxable_pay Double NOT NULL AFTER deductions;
+Query OK, 0 rows affected (2.29 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  ALTER TABLE employee_payroll ADD tax Double NOT NULL AFTER taxable_pay;
+Query OK, 0 rows affected (1.64 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD net_pay Double NOT NULL AFTER tax;
+Query OK, 0 rows affected (2.46 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+--------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+--------------+
+| id | name   | address | department | basic_pay | deductions | taxable_pay | tax | net_pay | start      | gender | phone_number |
++----+--------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+--------------+
+|  1 | Anand  | NULL    |            |     35000 |          0 |           0 |   0 |       0 | 2021-07-06 | M      | NULL         |
+|  2 | Harish | NULL    |            |     38000 |          0 |           0 |   0 |       0 | 2021-07-07 | M      | NULL         |
+|  3 | manu   | NULL    |            |     29000 |          0 |           0 |   0 |       0 | 2021-07-06 | M      | NULL         |
+|  4 | bills  | NULL    |            |     35000 |          0 |           0 |   0 |       0 | 2021-07-06 | M      | NULL         |
+|  5 | Anusha | NULL    |            |     38000 |          0 |           0 |   0 |       0 | 2021-07-08 | F      | NULL         |
+|  6 | Banu   | NULL    |            |     29000 |          0 |           0 |   0 |       0 | 2021-07-08 | F      | NULL         |
++----+--------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+--------------+
+6 rows in set (0.00 sec)
+
 
 
 
