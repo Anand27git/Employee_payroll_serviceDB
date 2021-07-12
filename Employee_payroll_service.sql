@@ -75,7 +75,7 @@ mysql>mysql> SELECT * FROM employee_payroll;
       |  3 | manu   |  29000 | 2021-07-06 |
       +----+--------+--------+------------+
       3 rows in set (0.01 sec)
-      
+
 /* UC-5- retrieving salary data as well as date range  using cast and now */
 
   mysql> SELECT salary FROM employee_payroll WHERE  name='bills';
@@ -99,4 +99,53 @@ mysql>mysql> SELECT * FROM employee_payroll;
   +----+--------+--------+------------+
   4 rows in set (0.00 sec)
 
-  mysql>
+ /UC-6-altering the table to add Gender and updating the Gender for Employee_payroll_services */
+
+  mysql> ALTER table employee_payroll
+      ->  ADD gender CHAR(6);
+  Query OK, 0 rows affected (1.67 sec)
+  Records: 0  Duplicates: 0  Warnings: 0
+
+  mysql> SELECT * FROM employee_payroll;
+  +----+--------+--------+------------+--------+
+  | id | name   | salary | start      | gender |
+  +----+--------+--------+------------+--------+
+  |  1 | Anand  |  35000 | 2021-07-06 | NULL   |
+  |  2 | Harish |  38000 | 2021-07-07 | NULL   |
+  |  3 | manu   |  29000 | 2021-07-06 | NULL   |
+  |  4 | bills  |  35000 | 2021-07-06 | NULL   |
+  +----+--------+--------+------------+--------+
+  4 rows in set (0.00 sec)
+
+  mysql> UPDATE employee_payroll set gender = 'M' WHERE name = 'Bills' or name = 'Anand' or name = 'Harish' or name = 'Manu';
+  Query OK, 4 rows affected (0.11 sec)
+  Rows matched: 4  Changed: 4  Warnings: 0
+
+  mysql> SELECT * FROM employee_payroll;
+  +----+--------+--------+------------+--------+
+  | id | name   | salary | start      | gender |
+  +----+--------+--------+------------+--------+
+  |  1 | Anand  |  35000 | 2021-07-06 | M      |
+  |  2 | Harish |  38000 | 2021-07-07 | M      |
+  |  3 | manu   |  29000 | 2021-07-06 | M      |
+  |  4 | bills  |  35000 | 2021-07-06 | M      |
+  +----+--------+--------+------------+--------+
+  4 rows in set (0.00 sec)
+
+  mysql> UPDATE employee_payroll set gender = 'F' WHERE name = 'Anusha' or name = 'Banu';
+  Query OK, 2 rows affected (0.12 sec)
+  Rows matched: 2  Changed: 2  Warnings: 0
+
+  mysql> SELECT * FROM employee_payroll;
+  +----+--------+--------+------------+--------+
+  | id | name   | salary | start      | gender |
+  +----+--------+--------+------------+--------+
+  |  1 | Anand  |  35000 | 2021-07-06 | M      |
+  |  2 | Harish |  38000 | 2021-07-07 | M      |
+  |  3 | manu   |  29000 | 2021-07-06 | M      |
+  |  4 | bills  |  35000 | 2021-07-06 | M      |
+  |  5 | Anusha |  38000 | 2021-07-08 | F      |
+  |  6 | Banu   |  29000 | 2021-07-08 | F      |
+  +----+--------+--------+------------+--------+
+  6 rows in set (0.00 sec)
+
