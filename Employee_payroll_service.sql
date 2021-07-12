@@ -256,6 +256,36 @@ mysql> SELECT * FROM employee_payroll;
 +----+--------+---------+------------+-----------+------------+-------------+-----+---------+------------+--------+--------------+
 6 rows in set (0.00 sec)
 
+/* UC-10- Terisa is part of sales and marketing with two different Terisa with emp_Id */
+
+mysql> INSERT INTO employee_payroll
+    -> (name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) VALUES
+    -> ('Terisa', 'Sales', 'F', 30000.00, 5000.00, 1000.00, 200000.00, 150000.00, '2021-05-04');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO employee_payroll
+    -> (name, department, gender, basic_pay, deductions, taxable_pay, tax, net_pay, start) VALUES
+    -> ('Terisa', 'Marketing', 'F', 50000.00, 5000.00, 10000.00, 500000.00, 100000.00, '2021-06-23');
+Query OK, 1 row affected (0.15 sec)
+
+mysql>
+mysql> SELECT * FROM employee_payroll;
++----+--------+---------+------------+-----------+------------+-------------+--------+---------+------------+--------+--------------+
+| id | name   | address | department | basic_pay | deductions | taxable_pay | tax    | net_pay | start      | gender | phone_number |
++----+--------+---------+------------+-----------+------------+-------------+--------+---------+------------+--------+--------------+
+|  1 | Anand  | NULL    |            |     35000 |          0 |           0 |      0 |       0 | 2021-07-06 | M      | NULL         |
+|  2 | Harish | NULL    |            |     38000 |          0 |           0 |      0 |       0 | 2021-07-07 | M      | NULL         |
+|  3 | manu   | NULL    |            |     29000 |          0 |           0 |      0 |       0 | 2021-07-06 | M      | NULL         |
+|  4 | bills  | NULL    |            |     35000 |          0 |           0 |      0 |       0 | 2021-07-06 | M      | NULL         |
+|  5 | Anusha | NULL    |            |     38000 |          0 |           0 |      0 |       0 | 2021-07-08 | F      | NULL         |
+|  6 | Banu   | NULL    |            |     29000 |          0 |           0 |      0 |       0 | 2021-07-08 | F      | NULL         |
+|  7 | Terisa | NULL    | Sales      |     30000 |       5000 |        1000 | 200000 |  150000 | 2021-05-04 | F      | NULL         |
+|  8 | Terisa | NULL    | Marketing  |     50000 |       5000 |       10000 | 500000 |  100000 | 2021-06-23 | F      | NULL         |
++----+--------+---------+------------+-----------+------------+-------------+--------+---------+------------+--------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> ^C
+mysql>
 
 
 
