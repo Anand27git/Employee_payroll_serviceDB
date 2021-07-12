@@ -99,7 +99,7 @@ mysql>mysql> SELECT * FROM employee_payroll;
   +----+--------+--------+------------+
   4 rows in set (0.00 sec)
 
- /UC-6-altering the table to add Gender and updating the Gender for Employee_payroll_services */
+ /* UC-6-altering the table to add Gender and updating the Gender for Employee_payroll_services */
 
   mysql> ALTER table employee_payroll
       ->  ADD gender CHAR(6);
@@ -192,4 +192,34 @@ mysql> SELECT gender, count(gender) FROM employee_payroll GROUP BY gender;
 +--------+---------------+
 2 rows in set (0.04 sec)
 
-mysql>
+/* UC-8-employee information like phone_number address department */
+mysql>  ALTER TABLE employee_payroll ADD phone_number VARCHAR(10);
+Query OK, 0 rows affected (2.72 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD address VARCHAR(100) AFTER name;
+Query OK, 0 rows affected (4.36 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  ALTER TABLE employee_payroll ADD department VARCHAR(30) NOT NULL AFTER address;
+Query OK, 0 rows affected (4.24 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc employee_payroll;
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| id           | int          | NO   | PRI | NULL    | auto_increment |
+| name         | varchar(100) | NO   |     | NULL    |                |
+| address      | varchar(100) | YES  |     | NULL    |                |
+| department   | varchar(30)  | NO   |     | NULL    |                |
+| salary       | int          | NO   |     | NULL    |                |
+| start        | date         | YES  |     | NULL    |                |
+| gender       | char(6)      | YES  |     | NULL    |                |
+| phone_number | varchar(10)  | YES  |     | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+8 rows in set (0.05 sec)
+
+
+
+
