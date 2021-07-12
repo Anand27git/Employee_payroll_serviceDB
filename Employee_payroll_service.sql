@@ -66,4 +66,37 @@ mysql> SELECT * FROM employee_payroll;
 +----+--------+--------+------------+
 3 rows in set (0.01 sec)
 
-mysql>
+mysql>mysql> SELECT * FROM employee_payroll;
+      +----+--------+--------+------------+
+      | id | name   | salary | start      |
+      +----+--------+--------+------------+
+      |  1 | Anand  |  35000 | 2021-07-06 |
+      |  2 | Harish |  38000 | 2021-07-07 |
+      |  3 | manu   |  29000 | 2021-07-06 |
+      +----+--------+--------+------------+
+      3 rows in set (0.01 sec)
+      
+/* UC-5- retrieving salary data as well as date range  using cast and now */
+
+  mysql> SELECT salary FROM employee_payroll WHERE  name='bills';
+  +--------+
+  | salary |
+  +--------+
+  |  35000 |
+  +--------+
+  1 row in set (0.00 sec)
+
+  /*using date range cast and now */
+
+  mysql> SELECT * FROM employee_payroll WHERE start BETWEEN CAST('2021-07-06' AS DATE) AND DATE(NOW());
+  +----+--------+--------+------------+
+  | id | name   | salary | start      |
+  +----+--------+--------+------------+
+  |  1 | Anand  |  35000 | 2021-07-06 |
+  |  2 | Harish |  38000 | 2021-07-07 |
+  |  3 | manu   |  29000 | 2021-07-06 |
+  |  4 | bills  |  35000 | 2021-07-06 |
+  +----+--------+--------+------------+
+  4 rows in set (0.00 sec)
+
+  mysql>
