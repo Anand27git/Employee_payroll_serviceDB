@@ -54,3 +54,16 @@ mysql> INSERT INTO employee_payroll
 Query OK, 3 rows affected (0.45 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 
+/* UC-4-retrieving  data from Employee_Payroll */
+
+mysql> SELECT * FROM employee_payroll;
++----+--------+--------+------------+
+| id | name   | salary | start      |
++----+--------+--------+------------+
+|  1 | Anand  |  35000 | 2021-07-06 |
+|  2 | Harish |  38000 | 2021-07-07 |
+|  3 | manu   |  29000 | 2021-07-06 |
++----+--------+--------+------------+
+3 rows in set (0.01 sec)
+
+mysql>
